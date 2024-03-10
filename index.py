@@ -28,7 +28,7 @@ config = None
 firstmessage = True
 _LOGGER = None
 
-VERSION = '1.0.4'
+VERSION = '1.0.5'
 
 CONFIG_PATH = './config/config.yml'
 DB_PATH = './config/classifier.db'
@@ -272,6 +272,10 @@ def on_message(client, userdata, message):
     else:
         _LOGGER.error(f"Unknown label: {after_data['label']}")
         return
+
+    # add score to sublabel
+    if config['frigate'].get('sublabel_score'):
+        sublabel = f'{sublabel} ({int(score * 100)}%)'
 
     if result is None:
         # Insert a new record if it doesn't exist

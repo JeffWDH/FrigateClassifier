@@ -18,6 +18,7 @@ frigate:
   mqtt_username: username
   mqtt_password: password
   main_topic: frigate
+  sublabel_score: true
   camera:
     - birdcam
 bird_classification:
